@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="task_statuses_array">
+        <item>Новые</item>
+        <item>Закрытые</item>
+        <item>Все</item>
+    </string-array>
+    <string-array name="tasks_array">
+        <item>№INT0000001</item>
+        <item>№INT0000002</item>
+        <item>№INT0000003</item>
+    </string-array>
+
+    <string name="app_name">Гермес</string>
+    <string name="action_settings">Настройки</string>
+    <string name="Status">Статус</string>
+    <string name="title_activity_activity_logon">Авторизация</string>
+    <string name="Login">Войти</string>
+    <string name="Password">Пароль</string>
+    <string name="Identifier">Идентификатор</string>
+    <string name="title_activity_activity_choose_status">Выбор статуса заказа</string>
+    <!-- Statuses -->
+    <string name="Delivering">Доставляется</string>
+    <string name="DriverRefused">Водитель отказался</string>
+    <string name="Delivered">Доставлено</string>
+    <string name="CustomerRefused">Клиент отказался</string>
+    <!-- Fields for tsk detail -->
+    <string name="TaskID1c">№</string>
+    <string name="CreateDate">Создана</string>
+    <string name="UpToDate">Испонить до</string>
+    <string name="CustomerName">Имя</string>
+    <string name="CustomerPhone">Телефон</string>
+    <string name="CustomerAddress">Адрес</string>
+    <string name="StatusTaskDetail">Статус</string>
+    <string name="ShippingWarehouse">Склад</string>
+    <string name="Goods">Заказ(ы)</string>
+    <string name="StatusHistory">История заказа</string>
+
+    <string name="TryLogin">Попытка входа</string>
+    <string name="PleaseWait">Пожалуйста подождите...</string>
+
+    <string name="LoginError">Ошибка входа</string>
+    <string name="LoginOrPasswordIncorrect">Неверный логин или пароль</string>
+
+    <string name="title_activity_activity_task_details">Детали заказа</string>
+    <string name="NewDeliveryTaskNotify">Вам поступила новая задача на доставку</string>
+</resources>

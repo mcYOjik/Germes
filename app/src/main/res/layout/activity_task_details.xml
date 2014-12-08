@@ -1,0 +1,111 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.l_0k.germes.ActivityTaskDetails">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/TaskID1c"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="TaskID1c"
+        android:textStyle="bold"
+        android:background="#4e4f8e19" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/CreateDate"
+        android:layout_below="@+id/TaskID1c"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="CreateDate"
+        android:background="#70348b96" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/UpToDate"
+        android:layout_below="@+id/CreateDate"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="UpToDate"
+        android:background="#70348b96" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/CustomerName"
+        android:layout_below="@+id/UpToDate"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="CustomerName"
+        android:background="#5e5e4f96" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/CustomerPhone"
+        android:layout_below="@+id/CustomerName"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="CustomerPhone"
+        android:background="#5e5e4f96" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/CustomerAddress"
+        android:layout_below="@+id/CustomerPhone"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="CustomerAddress"
+        android:background="#5e5e4f96" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ShippingWarehouse"
+        android:layout_below="@+id/CustomerAddress"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="ShippingWarehouse"
+        android:background="#58919696" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Status"
+        android:text="Status"
+        android:layout_below="@+id/ShippingWarehouse"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="#3dc41d06" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Goods"
+        android:text="Goods"
+        android:layout_below="@+id/Status"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="#1efff609" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/StatusHistory"
+        android:layout_below="@+id/Goods"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="StatusHistory"
+        android:background="#46965307" />
+</RelativeLayout>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="task_statuses_array">
+        <item>New</item>
+        <item>Closed</item>
+        <item>All</item>
+    </string-array>
+
+    <string name="app_name">Germes</string>
+    <string name="action_settings">Settings</string>
+    <string name="Status">Status</string>
+    <string name="title_activity_activity_logon">Sign in</string>
+    <string name="Login">Login</string>
+    <string name="Password">Password</string>
+    <string name="Identifier">Identifier</string>
+    <string name="title_activity_activity_choose_status">Choose task status</string>
+    <!-- Statuses -->
+    <string name="Delivering">Delivering</string>
+    <string name="DriverRefused">Driver refused</string>
+    <string name="Delivered">Delivered</string>
+    <string name="CustomerRefused">Customer Refused</string>
+    <!-- Fields for tsk detail -->
+    <string name="TaskID1c">#</string>
+    <string name="CreateDate">Created</string>
+    <string name="UpToDate">Up to date</string>
+    <string name="CustomerName">Name</string>
+    <string name="CustomerPhone">Phone</string>
+    <string name="CustomerAddress">Address</string>
+    <string name="ShippingWarehouse">Warehouse</string>
+    <string name="StatusTaskDetail">Status</string>
+    <string name="Goods">Goods</string>
+    <string name="StatusHistory">Task history</string>
+
+    <string name="TryLogin">Try to logon</string>
+    <string name="PleaseWait">Please wait...</string>
+
+    <string name="LoginError">Login error</string>
+    <string name="LoginOrPasswordIncorrect">Login or password are incorrect</string>
+
+    <string name="title_activity_activity_task_details">Task details</string>
+    <string name="NewDeliveryTaskNotify">You have new delivering task</string>
+
+</resources>
