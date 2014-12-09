@@ -17,7 +17,7 @@ import android.widget.Toast;
 import org.ksoap2.serialization.SoapObject;
 
 import java.util.ArrayList;
-
+//Окно тасков
 
 public class ActivityTasks extends Activity {
 
