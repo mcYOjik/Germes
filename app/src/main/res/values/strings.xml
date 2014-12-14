@@ -40,5 +40,6 @@
 
     <string name="title_activity_activity_task_details">Task details</string>
     <string name="NewDeliveryTaskNotify">You have new delivering task</string>
+    <string name="UpToTime">Up to time</string>
 
 </resources>

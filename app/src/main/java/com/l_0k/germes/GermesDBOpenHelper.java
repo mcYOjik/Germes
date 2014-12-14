@@ -9,7 +9,7 @@ public class GermesDBOpenHelper extends SQLiteOpenHelper {
 
     //DB
     private static final String DATABASE_NAME = "Germes.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
     public static final String COLUMN_ID = "_id";
     //Table AppUsers
     public static final String TABLE_APP_USERS = "AppUsers";
@@ -24,6 +24,7 @@ public class GermesDBOpenHelper extends SQLiteOpenHelper {
     public static final String TABLE_TASKS_COLUMN_TASK_1C_ID = "Task1cID";
     public static final String TABLE_TASKS_COLUMN_CREATE_DATE = "CreateDate";
     public static final String TABLE_TASKS_COLUMN_UP_TO_DATE = "UpToDate";
+    public static final String TABLE_TASKS_COLUMN_UP_TO_TIME = "UpToTime";
     public static final String TABLE_TASKS_COLUMN_CUSTOMER_NAME = "CustomerName";
     public static final String TABLE_TASKS_COLUMN_CUSTOMER_PHONE = "CustomerPhone";
     public static final String TABLE_TASKS_COLUMN_CUSTOMER_ADDRESS = "CustomerAddress";
@@ -34,6 +35,7 @@ public class GermesDBOpenHelper extends SQLiteOpenHelper {
             TABLE_TASKS_COLUMN_TASK_1C_ID + " TEXT,\n " +
             TABLE_TASKS_COLUMN_CREATE_DATE + " TEXT,\n " +
             TABLE_TASKS_COLUMN_UP_TO_DATE + " TEXT,\n " +
+            TABLE_TASKS_COLUMN_UP_TO_TIME + " TEXT,\n " +
             TABLE_TASKS_COLUMN_CUSTOMER_NAME + " TEXT,\n " +
             TABLE_TASKS_COLUMN_CUSTOMER_PHONE + " TEXT,\n " +
             TABLE_TASKS_COLUMN_CUSTOMER_ADDRESS + " TEXT,\n " +
@@ -42,13 +44,19 @@ public class GermesDBOpenHelper extends SQLiteOpenHelper {
     //Table AppUsers
     public static final String TABLE_STATUSES_HISTORY = "StatusesHistory";
     public static final String TABLE_STATUSES_HISTORY_COLUMN_TASK_ID = "Task_id";
-    public static final String TABLE_STATUSES_HISTORY_COLUMN_StatusTimeStamp = "StatusTimeStamp";
+    public static final String TABLE_STATUSES_HISTORY_COLUMN_STATUS_TIMES_TAMP = "StatusTimeStamp";
     public static final String TABLE_STATUSES_HISTORY_COLUMN_STATUS = "Status";
+    public static final String TABLE_STATUSES_HISTORY_LATITUDE = "Latitude";
+    public static final String TABLE_STATUSES_HISTORY_LONGITUDE = "Longitude";
+    public static final String TABLE_STATUSES_HISTORY_ADDRESS = "Address";
     public static final String TABLE_STATUSES_HISTORY_COLUMN_SENT_TO_1C = "SentTo1c";
     private static final String CREATE_TABLE_STATUSES_HISTORY = "CREATE TABLE " + TABLE_STATUSES_HISTORY + " (\n" +
             COLUMN_ID + " INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT,\n " +
             TABLE_STATUSES_HISTORY_COLUMN_TASK_ID + " INTEGER NOT NULL,\n " +
-            TABLE_STATUSES_HISTORY_COLUMN_StatusTimeStamp + " TEXT,\n " +
+            TABLE_STATUSES_HISTORY_COLUMN_STATUS_TIMES_TAMP + " TEXT,\n " +
+            TABLE_STATUSES_HISTORY_LATITUDE + " TEXT,\n " +
+            TABLE_STATUSES_HISTORY_LONGITUDE + " TEXT,\n " +
+            TABLE_STATUSES_HISTORY_ADDRESS +  " TEXT,\n " +
             TABLE_STATUSES_HISTORY_COLUMN_STATUS + " TEXT,\n " +
             TABLE_STATUSES_HISTORY_COLUMN_SENT_TO_1C + " TEXT);";
     //Table Goods

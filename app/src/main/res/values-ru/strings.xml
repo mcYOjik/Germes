@@ -45,4 +45,5 @@
 
     <string name="title_activity_activity_task_details">Детали заказа</string>
     <string name="NewDeliveryTaskNotify">Вам поступила новая задача на доставку</string>
+    <string name="UpToTime">Исполнить к</string>
 </resources>

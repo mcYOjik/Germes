@@ -6,7 +6,6 @@ import android.app.PendingIntent;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -16,15 +15,12 @@ import android.util.Log;
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.PropertyInfo;
 import org.ksoap2.serialization.SoapObject;
-import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
-import java.util.ArrayList;
-
 /**
  * Created by knyazev_o on 05.11.2014.
- * this class download task form 1c
+ * this class download tasks form 1c
  */
 public class SOAPHelperGermesSendDeliveryTasks extends SOAPHelper {
 
@@ -77,14 +73,15 @@ public class SOAPHelperGermesSendDeliveryTasks extends SOAPHelper {
                 task.setTask1cID(soapObjectTask.getProperty(0).toString());
                 task.setCreateDate(soapObjectTask.getProperty(1).toString());
                 task.setUpToDate(soapObjectTask.getProperty(2).toString());
-                task.setCustomerName(soapObjectTask.getProperty(3).toString());
-                task.setCustomerPhone(soapObjectTask.getProperty(4).toString());
-                task.setCustomerAddress(soapObjectTask.getProperty(5).toString());
-                task.setShippingWarehouse(soapObjectTask.getProperty(6).toString());
+                task.setUpToTime(soapObjectTask.getProperty(3).toString());
+                task.setCustomerName(soapObjectTask.getProperty(4).toString());
+                task.setCustomerPhone(soapObjectTask.getProperty(5).toString());
+                task.setCustomerAddress(soapObjectTask.getProperty(6).toString());
+                task.setShippingWarehouse(soapObjectTask.getProperty(7).toString());
                 task.setStatus(0);
 
-                if (soapObjectTask.getPropertyCount() > 7) {
-                    for (int propertyGoods = 7; propertyGoods < soapObjectTask.getPropertyCount(); propertyGoods++) {
+                if (soapObjectTask.getPropertyCount() > 8) {
+                    for (int propertyGoods = 8; propertyGoods < soapObjectTask.getPropertyCount(); propertyGoods++) {
                         SoapObject soapObjectGoods = (SoapObject)soapObjectTask.getProperty(propertyGoods);
                         task.addGoods(soapObjectGoods.getProperty(0).toString()
                                 , Integer.parseInt(soapObjectGoods.getProperty(1).toString()));
@@ -134,6 +131,7 @@ public class SOAPHelperGermesSendDeliveryTasks extends SOAPHelper {
         contentValues.put(germesDBOpenHelper.TABLE_TASKS_COLUMN_TASK_1C_ID, taskForDownload.getTask1cID());
         contentValues.put(germesDBOpenHelper.TABLE_TASKS_COLUMN_CREATE_DATE, taskForDownload.getCreateDate());
         contentValues.put(germesDBOpenHelper.TABLE_TASKS_COLUMN_UP_TO_DATE, taskForDownload.getUpToDate());
+        contentValues.put(germesDBOpenHelper.TABLE_TASKS_COLUMN_UP_TO_TIME, taskForDownload.getUpToTime());
         contentValues.put(germesDBOpenHelper.TABLE_TASKS_COLUMN_CUSTOMER_NAME, taskForDownload.getCustomerName());
         contentValues.put(germesDBOpenHelper.TABLE_TASKS_COLUMN_CUSTOMER_PHONE, taskForDownload.getCustomerPhone());
         contentValues.put(germesDBOpenHelper.TABLE_TASKS_COLUMN_CUSTOMER_ADDRESS, taskForDownload.getCustomerAddress());
@@ -163,7 +161,8 @@ public class SOAPHelperGermesSendDeliveryTasks extends SOAPHelper {
 
         //Mark Task as downloaded - marked task will not be send by service to app
         SOAPHelperGermesGotTask soapHelperGermesGotTask;
-        soapHelperGermesGotTask = new SOAPHelperGermesGotTask(taskForDownload.getTask1cID()
+        soapHelperGermesGotTask = new SOAPHelperGermesGotTask(this.context, task_id
+                , taskForDownload.getTask1cID()
                 , taskForDownload.getCreateDate().substring(0, 10));
         soapHelperGermesGotTask.run();
     }

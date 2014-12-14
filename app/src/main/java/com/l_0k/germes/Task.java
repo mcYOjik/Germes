@@ -1,13 +1,8 @@
 package com.l_0k.germes;
 
 import android.content.Context;
-import android.content.res.Resources;
-
-import org.ksoap2.serialization.KvmSerializable;
-import org.ksoap2.serialization.PropertyInfo;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
 
 /**
  * Created by knyazev_o on 28.10.2014.
@@ -20,6 +15,8 @@ public class Task {
     private String task1cID;
     private String createDate;
     private String upToDate;
+
+    private String upToTime;
     private String customerName;
     private String customerPhone;
     private String customerAddress;
@@ -45,7 +42,7 @@ public class Task {
     public static final int STATUS_CUSTOMER_REFUSED = 3;
 
     Task (Context _context, int __id, String _task1cID, String _createDate, String _upToDate,
-          String _customerName ,String _customerPhone, String _customerAddress,
+          String _upToTime, String _customerName ,String _customerPhone, String _customerAddress,
           String _shippingWarehouse, int _status, String _goods) {
 
         context = _context;
@@ -54,6 +51,7 @@ public class Task {
         task1cID = _task1cID;
         createDate= _createDate;
         upToDate = _upToDate;
+        upToTime = _upToTime;
         customerName = _customerName;
         customerPhone = _customerPhone;
         customerAddress = _customerAddress;
@@ -94,6 +92,14 @@ public class Task {
 
     public void setUpToDate(String upToDate) {
         this.upToDate = upToDate;
+    }
+
+    public String getUpToTime() {
+        return upToTime;
+    }
+
+    public void setUpToTime(String upToTime) {
+        this.upToTime = upToTime;
     }
 
     public String getCustomerName() {

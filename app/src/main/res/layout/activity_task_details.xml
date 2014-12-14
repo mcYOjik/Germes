@@ -42,8 +42,18 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/CustomerName"
+        android:id="@+id/UpToTime"
         android:layout_below="@+id/UpToDate"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="UpToTime"
+        android:background="#70348b96" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/CustomerName"
+        android:layout_below="@+id/UpToTime"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:text="CustomerName"

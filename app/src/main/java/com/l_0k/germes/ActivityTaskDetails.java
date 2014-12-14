@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
 import android.widget.TextView;
 
 
@@ -19,6 +18,7 @@ public class ActivityTaskDetails extends Activity {
         ((TextView)findViewById(R.id.TaskID1c)).setText(getString(R.string.TaskID1c) + ": " + extras.getString("TaskID1c"));
         ((TextView)findViewById(R.id.CreateDate)).setText(getString(R.string.CreateDate) + ": " + extras.getString("CreateDate"));
         ((TextView)findViewById(R.id.UpToDate)).setText(getString(R.string.UpToDate) + ": " + extras.getString("UpToDate"));
+        ((TextView)findViewById(R.id.UpToTime)).setText(getString(R.string.UpToTime) + ": " + extras.getString("UpToTime"));
         ((TextView)findViewById(R.id.CustomerName)).setText(getString(R.string.CustomerName) + ": " + extras.getString("CustomerName"));
         ((TextView)findViewById(R.id.CustomerPhone)).setText(getString(R.string.CustomerPhone) + ": " + extras.getString("CustomerPhone"));
         ((TextView)findViewById(R.id.CustomerAddress)).setText(getString(R.string.CustomerAddress) + ": " + extras.getString("CustomerAddress"));

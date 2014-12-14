@@ -58,10 +58,6 @@ public class ActivityTaskStatus extends Activity {
                     newStatus = Task.STATUS_CUSTOMER_REFUSED;
                 }
 
-//                SOAPHelperGermesSetStatus soapHelperGermesSetStatus;
-//                soapHelperGermesSetStatus = new SOAPHelperGermesSetStatus(identifier, createDate, Integer.toString(status));
-//                soapHelperGermesSetStatus.run();
-
                 ContentValues contentValues = new ContentValues();
                 contentValues.put(GermesDBOpenHelper.TABLE_TASKS_COLUMN_STATUS, newStatus);
                 sqLiteDatabase.update(GermesDBOpenHelper.TABLE_TASKS, contentValues, "_id = ?", new String[] { _id });
@@ -70,7 +66,7 @@ public class ActivityTaskStatus extends Activity {
                 contentValues.clear();
                 contentValues.put(GermesDBOpenHelper.TABLE_STATUSES_HISTORY_COLUMN_TASK_ID, _id);
                 Calendar calendar = Calendar.getInstance();
-                contentValues.put(GermesDBOpenHelper.TABLE_STATUSES_HISTORY_COLUMN_StatusTimeStamp
+                contentValues.put(GermesDBOpenHelper.TABLE_STATUSES_HISTORY_COLUMN_STATUS_TIMES_TAMP
                         , String.valueOf(calendar.get(Calendar.YEAR))
                         + "-" + String.valueOf(calendar.get(Calendar.MONTH))
                         + "-" + String.valueOf(calendar.get(Calendar.DAY_OF_MONTH))
@@ -78,7 +74,6 @@ public class ActivityTaskStatus extends Activity {
                         + ":" + String.valueOf(calendar.get(Calendar.MINUTE))
                         + ":" + String.valueOf(calendar.get(Calendar.SECOND)));
                 contentValues.put(GermesDBOpenHelper.TABLE_STATUSES_HISTORY_COLUMN_STATUS, newStatus);
-
                 sqLiteDatabase.insert(GermesDBOpenHelper.TABLE_STATUSES_HISTORY, null, contentValues);
 
                 //вызываем отправку изменений статуса в 1с

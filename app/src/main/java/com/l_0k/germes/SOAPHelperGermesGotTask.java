@@ -1,5 +1,8 @@
 package com.l_0k.germes;
 
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import org.ksoap2.SoapEnvelope;
@@ -19,10 +22,15 @@ import java.util.Date;
 //This class for mark task as downloaded in 1c
 public class SOAPHelperGermesGotTask extends SOAPHelper {
 
+    private Context context;
+    private long _id;
     private String identifier;
     private String createDate;
+    private boolean isMarked; //show - marked task as downloaded in 1c or not (yes if SOAP method receive true)
 
-    SOAPHelperGermesGotTask(String identifier, String createDate){
+    SOAPHelperGermesGotTask(Context context, long _id, String identifier, String createDate){
+        this._id = _id;
+        this.context = context;
         this.identifier = identifier;
         this.createDate = createDate;
 
@@ -68,7 +76,8 @@ public class SOAPHelperGermesGotTask extends SOAPHelper {
             androidHttpTransport.call(soapAction, envelope);
             //Get the response
             SoapPrimitive soapPrimitive = (SoapPrimitive)envelope.getResponse();
-            Log.w("Germes-----------------------", soapPrimitive.toString());
+            isMarked = Boolean.valueOf(soapPrimitive.toString());
+            Log.d("SOAPHelperGermesGotTask", soapPrimitive.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -76,6 +85,28 @@ public class SOAPHelperGermesGotTask extends SOAPHelper {
 
     @Override
     protected void processResult() {
+        //insert Location, status, time stamp to
+        if (isMarked) {
+            GermesDBOpenHelper germesDBOpenHelper = new GermesDBOpenHelper(context);
+            SQLiteDatabase sqLiteDatabase = germesDBOpenHelper.getWritableDatabase();
 
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(GermesDBOpenHelper.TABLE_STATUSES_HISTORY_COLUMN_TASK_ID, _id);
+            Calendar calendar = Calendar.getInstance();
+            contentValues.put(GermesDBOpenHelper.TABLE_STATUSES_HISTORY_COLUMN_STATUS_TIMES_TAMP
+                    , String.valueOf(calendar.get(Calendar.YEAR))
+                    + "-" + String.valueOf(calendar.get(Calendar.MONTH))
+                    + "-" + String.valueOf(calendar.get(Calendar.DAY_OF_MONTH))
+                    + "T" + String.valueOf(calendar.get(Calendar.HOUR))
+                    + ":" + String.valueOf(calendar.get(Calendar.MINUTE))
+                    + ":" + String.valueOf(calendar.get(Calendar.SECOND)));
+            contentValues.put(GermesDBOpenHelper.TABLE_STATUSES_HISTORY_COLUMN_STATUS, Task.STATUS_DELIVERING);
+            //TODO: получить локацию и записать её
+            //public static final String TABLE_STATUSES_HISTORY_LATITUDE = "Latitude";
+            //public static final String TABLE_STATUSES_HISTORY_LONGITUDE = "Longitude";
+
+            sqLiteDatabase.insert(GermesDBOpenHelper.TABLE_STATUSES_HISTORY, null, contentValues);
+            germesDBOpenHelper.close();
+        }
     }
 }

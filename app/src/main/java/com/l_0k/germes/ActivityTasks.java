@@ -12,9 +12,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.Toast;
-
-import org.ksoap2.serialization.SoapObject;
 
 import java.util.ArrayList;
 //Окно тасков
@@ -74,6 +71,7 @@ public class ActivityTasks extends Activity {
                 intentTaskDetails.putExtra("TaskID1c", task.getTask1cID());
                 intentTaskDetails.putExtra("CreateDate", task.getCreateDate());
                 intentTaskDetails.putExtra("UpToDate", task.getUpToDate());
+                intentTaskDetails.putExtra("UpToTime", task.getUpToTime());
                 intentTaskDetails.putExtra("CustomerName", task.getCustomerName());
                 intentTaskDetails.putExtra("CustomerPhone", task.getCustomerPhone());
                 intentTaskDetails.putExtra("CustomerAddress", task.getCustomerAddress());
@@ -121,6 +119,7 @@ public class ActivityTasks extends Activity {
                         cursor.getString(cursor.getColumnIndex(germesDBOpenHelper.TABLE_TASKS_COLUMN_TASK_1C_ID)),
                         cursor.getString(cursor.getColumnIndex(germesDBOpenHelper.TABLE_TASKS_COLUMN_CREATE_DATE)),
                         cursor.getString(cursor.getColumnIndex(germesDBOpenHelper.TABLE_TASKS_COLUMN_UP_TO_DATE)),
+                        cursor.getString(cursor.getColumnIndex(germesDBOpenHelper.TABLE_TASKS_COLUMN_UP_TO_TIME)),
                         cursor.getString(cursor.getColumnIndex(germesDBOpenHelper.TABLE_TASKS_COLUMN_CUSTOMER_NAME)),
                         cursor.getString(cursor.getColumnIndex(germesDBOpenHelper.TABLE_TASKS_COLUMN_CUSTOMER_PHONE)),
                         cursor.getString(cursor.getColumnIndex(germesDBOpenHelper.TABLE_TASKS_COLUMN_CUSTOMER_ADDRESS)),

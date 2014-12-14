@@ -3,7 +3,6 @@ package com.l_0k.germes;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.PropertyInfo;
@@ -99,6 +98,7 @@ public class SOAPHelperGermesSetStatus extends SOAPHelper  {
             sqLiteDatabase.update(GermesDBOpenHelper.TABLE_STATUSES_HISTORY, contentValues
                     , GermesDBOpenHelper.COLUMN_ID
                     + " = ?", new String[] { Integer.toString(_id) });
+            germesDBOpenHelper.close();
         }
     }
 }
