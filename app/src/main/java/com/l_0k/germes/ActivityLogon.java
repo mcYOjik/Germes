@@ -6,14 +6,12 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import java.net.InetAddress;
 
@@ -102,7 +100,7 @@ public class ActivityLogon extends Activity {
                     //проверка по локальной БД
                     UtilHelper utilHelper = new UtilHelper();
                     if (utilHelper.testLogon(context, editTextIdentifier.getText().toString(), editTextPassword.getText().toString())) {
-                        context.startService(new Intent(context, ServiceExchange.class)); //service of downloads new tasks
+                        //context.startService(new Intent(context, ServiceExchange.class)); //service of downloads new tasks
                         Intent intent = new Intent(context, ActivityTasks.class);
                         context.startActivity(intent);
                     } else {

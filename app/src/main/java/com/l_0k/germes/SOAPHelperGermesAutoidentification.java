@@ -1,13 +1,10 @@
 package com.l_0k.germes;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.AsyncTask;
-import android.util.Log;
 
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.PropertyInfo;
@@ -92,7 +89,7 @@ public class SOAPHelperGermesAutoidentification extends SOAPHelper
             UtilHelper utilHelper = new UtilHelper();
             utilHelper.insertLoginPasswordToDB(context, identifier, password);
 
-            context.startService(new Intent(context, ServiceExchange.class)); //service of downloads new tasks
+            //context.startService(new Intent(context, ServiceExchange.class)); //service of downloads new tasks
             Intent intent = new Intent(context, ActivityTasks.class);
             context.startActivity(intent);
         } else {

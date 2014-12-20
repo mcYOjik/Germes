@@ -4,11 +4,14 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
+
+import com.google.android.gms.location.LocationServices;
 
 import java.util.Calendar;
 
@@ -74,6 +77,22 @@ public class ActivityTaskStatus extends Activity {
                         + ":" + String.valueOf(calendar.get(Calendar.MINUTE))
                         + ":" + String.valueOf(calendar.get(Calendar.SECOND)));
                 contentValues.put(GermesDBOpenHelper.TABLE_STATUSES_HISTORY_COLUMN_STATUS, newStatus);
+
+                //Берём последнюю известную локацию
+                if (ActivityTasks.mGoogleApiClient.isConnected()) {
+                    Location location = LocationServices.FusedLocationApi.getLastLocation(ActivityTasks.mGoogleApiClient);
+                    if (location != null) {
+                        contentValues.put(GermesDBOpenHelper.TABLE_STATUSES_HISTORY_COLUMN_LATITUDE, String.valueOf(location.getLatitude()));
+                        contentValues.put(GermesDBOpenHelper.TABLE_STATUSES_HISTORY_COLUMN_LONGITUDE, String.valueOf(location.getLongitude()));
+
+                        //пробуем найти и добавить адрес
+                        String address = UtilHelper.getAddress(ActivityTaskStatus.this, location, 5);
+                        if (address != "") {
+                            contentValues.put(GermesDBOpenHelper.TABLE_STATUSES_HISTORY_COLUMN_ADDRESS, address);
+                        }
+                    }
+                };
+
                 sqLiteDatabase.insert(GermesDBOpenHelper.TABLE_STATUSES_HISTORY, null, contentValues);
 
                 //вызываем отправку изменений статуса в 1с
@@ -90,6 +109,8 @@ public class ActivityTaskStatus extends Activity {
         radioButtonDelivered.setOnClickListener(radioClickListener);
         radioButtonCustomerRefused.setOnClickListener(radioClickListener);
     }
+
+
 
 
     @Override

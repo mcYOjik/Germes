@@ -3,7 +3,10 @@ package com.l_0k.germes;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.location.Location;
 import android.util.Log;
+
+import com.google.android.gms.location.LocationServices;
 
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.PropertyInfo;
@@ -101,9 +104,21 @@ public class SOAPHelperGermesGotTask extends SOAPHelper {
                     + ":" + String.valueOf(calendar.get(Calendar.MINUTE))
                     + ":" + String.valueOf(calendar.get(Calendar.SECOND)));
             contentValues.put(GermesDBOpenHelper.TABLE_STATUSES_HISTORY_COLUMN_STATUS, Task.STATUS_DELIVERING);
-            //TODO: получить локацию и записать её
-            //public static final String TABLE_STATUSES_HISTORY_LATITUDE = "Latitude";
-            //public static final String TABLE_STATUSES_HISTORY_LONGITUDE = "Longitude";
+
+            //Берём последнюю известную локацию
+            if (ActivityTasks.mGoogleApiClient.isConnected()) {
+                Location location = LocationServices.FusedLocationApi.getLastLocation(ActivityTasks.mGoogleApiClient);
+                if (location != null) {
+                    contentValues.put(GermesDBOpenHelper.TABLE_STATUSES_HISTORY_COLUMN_LATITUDE, String.valueOf(location.getLatitude()));
+                    contentValues.put(GermesDBOpenHelper.TABLE_STATUSES_HISTORY_COLUMN_LONGITUDE, String.valueOf(location.getLongitude()));
+
+                    //пробуем найти и добавить адрес
+                    String address = UtilHelper.getAddress(context, location, 5);
+                    if (address != "") {
+                        contentValues.put(GermesDBOpenHelper.TABLE_STATUSES_HISTORY_COLUMN_ADDRESS, address);
+                    }
+                }
+            };
 
             sqLiteDatabase.insert(GermesDBOpenHelper.TABLE_STATUSES_HISTORY, null, contentValues);
             germesDBOpenHelper.close();

@@ -46,17 +46,17 @@ public class GermesDBOpenHelper extends SQLiteOpenHelper {
     public static final String TABLE_STATUSES_HISTORY_COLUMN_TASK_ID = "Task_id";
     public static final String TABLE_STATUSES_HISTORY_COLUMN_STATUS_TIMES_TAMP = "StatusTimeStamp";
     public static final String TABLE_STATUSES_HISTORY_COLUMN_STATUS = "Status";
-    public static final String TABLE_STATUSES_HISTORY_LATITUDE = "Latitude";
-    public static final String TABLE_STATUSES_HISTORY_LONGITUDE = "Longitude";
-    public static final String TABLE_STATUSES_HISTORY_ADDRESS = "Address";
+    public static final String TABLE_STATUSES_HISTORY_COLUMN_LATITUDE = "Latitude";
+    public static final String TABLE_STATUSES_HISTORY_COLUMN_LONGITUDE = "Longitude";
+    public static final String TABLE_STATUSES_HISTORY_COLUMN_ADDRESS = "Address";
     public static final String TABLE_STATUSES_HISTORY_COLUMN_SENT_TO_1C = "SentTo1c";
     private static final String CREATE_TABLE_STATUSES_HISTORY = "CREATE TABLE " + TABLE_STATUSES_HISTORY + " (\n" +
             COLUMN_ID + " INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT,\n " +
             TABLE_STATUSES_HISTORY_COLUMN_TASK_ID + " INTEGER NOT NULL,\n " +
             TABLE_STATUSES_HISTORY_COLUMN_STATUS_TIMES_TAMP + " TEXT,\n " +
-            TABLE_STATUSES_HISTORY_LATITUDE + " TEXT,\n " +
-            TABLE_STATUSES_HISTORY_LONGITUDE + " TEXT,\n " +
-            TABLE_STATUSES_HISTORY_ADDRESS +  " TEXT,\n " +
+            TABLE_STATUSES_HISTORY_COLUMN_LATITUDE + " TEXT,\n " +
+            TABLE_STATUSES_HISTORY_COLUMN_LONGITUDE + " TEXT,\n " +
+            TABLE_STATUSES_HISTORY_COLUMN_ADDRESS +  " TEXT,\n " +
             TABLE_STATUSES_HISTORY_COLUMN_STATUS + " TEXT,\n " +
             TABLE_STATUSES_HISTORY_COLUMN_SENT_TO_1C + " TEXT);";
     //Table Goods

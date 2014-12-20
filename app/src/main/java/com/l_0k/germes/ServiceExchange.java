@@ -9,13 +9,21 @@ import java.util.concurrent.TimeUnit;
 
 public class ServiceExchange extends Service {
     public ServiceExchange() {
+
     }
 
     public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.d("ServiceExchange", "--------------------------------------");
         new Thread(new Runnable() {
             public void run() {
                 while (true) {
                     try {
+                        if (ActivityTasks.mGoogleApiClient != null) {
+                            if (!ActivityTasks.mGoogleApiClient.isConnected()) {
+                                ActivityTasks.mGoogleApiClient.connect();
+                            }
+                        }
+
                         //send task statuses
                         UtilHelper sendStatusTo1c = new UtilHelper();
                         sendStatusTo1c.sendTasksStatusesTo1c(getApplicationContext());
@@ -27,7 +35,6 @@ public class ServiceExchange extends Service {
 
                         TimeUnit.SECONDS.sleep(300);
                         //Log.w("Germes ------------------", "Service Run");
-                        //Toast.makeText(getApplicationContext(), "Run", Toast.LENGTH_SHORT).show();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

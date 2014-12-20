@@ -4,6 +4,13 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by knyazev_o on 01.12.2014.
@@ -83,6 +90,38 @@ public class UtilHelper {
         contentValues.put(GermesDBOpenHelper.TABLE_APP_USERS_COLUMN_LOGIN, userName);
         contentValues.put(GermesDBOpenHelper.TABLE_APP_USERS_COLUMN_PASSWORD, password);
         sqLiteDatabase.insert(GermesDBOpenHelper.TABLE_APP_USERS, null, contentValues);
+    }
+
+    public static String getAddress(Context context, Location location, int attemptCount) {
+        String address = "";
+        if (location != null) {
+            Geocoder geocoder;
+            List<Address> addresses;
+
+            geocoder = new Geocoder(context, Locale.getDefault());
+            try {
+                addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                if (addresses.size() > 0) {
+                    if (addresses.get(0).getAddressLine(0) != null) {
+                        address = addresses.get(0).getAddressLine(0);
+                    }
+                    if (addresses.get(0).getAddressLine(1) != null) {
+                        address =  address + ", " + addresses.get(0).getAddressLine(1);
+                    }
+                    if (addresses.get(0).getAddressLine(2) != null) {
+                        address =  address + ", " + addresses.get(0).getAddressLine(2);
+                    }
+                }
+            } catch (IOException e) {
+                //TODO:time out
+                e.printStackTrace();
+                --attemptCount;
+                if (attemptCount > 0) {
+                    getAddress(context, location, attemptCount);
+                }
+            }
+        }
+        return address;
     }
 
 }
