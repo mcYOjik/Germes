@@ -25,6 +25,11 @@ public class UtilHelper {
         String identifier;
         String createDate;
         String status;
+        String Latitude;
+        String Longitude;
+        String Address;
+        String StatusTimeStamp;
+
         //получаем список всех неотправленных на серввис статусов
         GermesDBOpenHelper germesDBOpenHelper = new GermesDBOpenHelper(context);
         SQLiteDatabase sqLiteDatabase = germesDBOpenHelper.getWritableDatabase();
@@ -40,10 +45,14 @@ public class UtilHelper {
                 identifier = cursor.getString(cursor.getColumnIndex(GermesDBOpenHelper.TABLE_TASKS_COLUMN_TASK_1C_ID));
                 createDate = cursor.getString(cursor.getColumnIndex(GermesDBOpenHelper.TABLE_TASKS_COLUMN_CREATE_DATE)).substring(0, 10);
                 status = cursor.getString(cursor.getColumnIndex(GermesDBOpenHelper.TABLE_STATUSES_HISTORY_COLUMN_STATUS));
+                Latitude = cursor.getString(cursor.getColumnIndex(GermesDBOpenHelper.TABLE_STATUSES_HISTORY_COLUMN_LATITUDE));
+                Longitude = cursor.getString(cursor.getColumnIndex(GermesDBOpenHelper.TABLE_STATUSES_HISTORY_COLUMN_LONGITUDE));
+                Address = cursor.getString(cursor.getColumnIndex(GermesDBOpenHelper.TABLE_STATUSES_HISTORY_COLUMN_ADDRESS));
+                StatusTimeStamp = cursor.getString(cursor.getColumnIndex(GermesDBOpenHelper.TABLE_STATUSES_HISTORY_COLUMN_STATUS_TIMES_TAMP));
 
                 //вызываем SOAP метод отправки статусов
                 SOAPHelperGermesSetStatus soapHelperGermesSetStatus;
-                soapHelperGermesSetStatus = new SOAPHelperGermesSetStatus(context, _id, identifier, createDate, status);
+                soapHelperGermesSetStatus = new SOAPHelperGermesSetStatus(context, _id, identifier, createDate, status, Latitude, Longitude, Address, StatusTimeStamp);
                 soapHelperGermesSetStatus.run();
                 //Log.w("Germes ------------------SetStatus", identifier);
             } while (cursor.moveToNext());

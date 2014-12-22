@@ -24,15 +24,25 @@ public class SOAPHelperGermesSetStatus extends SOAPHelper  {
     private String identifier;
     private String createDate;
     private String status;
+    private String Latitude;
+    private String Longitude;
+    private String Address;
+    private String StatusTimeStamp;
     public boolean isSend = false;
 
-    SOAPHelperGermesSetStatus(Context context, int _id, String identifier, String createDate, String status){
+    SOAPHelperGermesSetStatus(Context context, int _id, String identifier, String createDate,
+                              String status, String Latitude, String Longitude, String Address,
+                              String StatusTimeStamp){
         this.context = context;
         this._id = _id;
         this.identifier = identifier;
         this.identifier = identifier;
         this.createDate = createDate;
         this.status = status;
+        this.Latitude = Latitude;
+        this.Longitude = Longitude;
+        this.Address = Address;
+        this.StatusTimeStamp = StatusTimeStamp;
 
         nameSpace = "http://localhost/";
         URL = "http://androidapp.alser.kz/1cws/Germes.1cws";
@@ -61,11 +71,35 @@ public class SOAPHelperGermesSetStatus extends SOAPHelper  {
         propertyInfoInputParameters2.setName("Status");
         propertyInfoInputParameters2.setValue(status);
         propertyInfoInputParameters2.setType(String.class);
+        //task Latitude param
+        PropertyInfo propertyInfoInputParametersLatitude = new PropertyInfo();
+        propertyInfoInputParametersLatitude.setName("Latitude");
+        propertyInfoInputParametersLatitude.setValue(Latitude);
+        propertyInfoInputParametersLatitude.setType(String.class);
+        //task Longitude param
+        PropertyInfo propertyInfoInputParametersLongitude = new PropertyInfo();
+        propertyInfoInputParametersLongitude.setName("Longitude");
+        propertyInfoInputParametersLongitude.setValue(Longitude);
+        propertyInfoInputParametersLongitude.setType(String.class);
+        //task Address param
+        PropertyInfo propertyInfoInputParametersAddress = new PropertyInfo();
+        propertyInfoInputParametersAddress.setName("Address");
+        propertyInfoInputParametersAddress.setValue(Address);
+        propertyInfoInputParametersAddress.setType(String.class);
+        //task StatusTimeStamp param
+        PropertyInfo propertyInfoInputParametersStatusTimeStamp = new PropertyInfo();
+        propertyInfoInputParametersStatusTimeStamp.setName("StatusTimeStamp");
+        propertyInfoInputParametersStatusTimeStamp.setValue(StatusTimeStamp);
+        propertyInfoInputParametersStatusTimeStamp.setType(String.class);
 
         //Add the property to request object
         soapObjectRequest.addProperty(propertyInfoInputParameters);
         soapObjectRequest.addProperty(propertyInfoInputParameters1);
         soapObjectRequest.addProperty(propertyInfoInputParameters2);
+        soapObjectRequest.addProperty(propertyInfoInputParametersLatitude);
+        soapObjectRequest.addProperty(propertyInfoInputParametersLongitude);
+        soapObjectRequest.addProperty(propertyInfoInputParametersAddress);
+        soapObjectRequest.addProperty(propertyInfoInputParametersStatusTimeStamp);
 
         //Create envelope
         SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);

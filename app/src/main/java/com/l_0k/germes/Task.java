@@ -62,6 +62,21 @@ public class Task {
         goodsList = new ArrayList<GoodsList>();
     }
 
+    public static String StatusIDToString(Context context, int StatusID) {
+        switch (StatusID) {
+            case STATUS_DELIVERING:
+                return context.getString(R.string.Delivering);
+            case STATUS_DRIVER_REFUSED:
+                return context.getString(R.string.DriverRefused);
+            case STATUS_DELIVERED:
+                return context.getString(R.string.Delivered);
+            case STATUS_CUSTOMER_REFUSED:
+                return context.getString(R.string.CustomerRefused);
+            default:
+                return context.getString(R.string.Delivering);
+        }
+    }
+
     public int get_id() {
         return _id;
     }

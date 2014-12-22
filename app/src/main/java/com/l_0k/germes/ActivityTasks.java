@@ -93,6 +93,7 @@ public class ActivityTasks extends FragmentActivity implements
                 Task task = (Task) adapterView.getItemAtPosition(position);
 
                 Intent intentTaskDetails = new Intent(getApplicationContext(), ActivityTaskDetails.class);
+                intentTaskDetails.putExtra(GermesDBOpenHelper.TABLE_STATUSES_HISTORY_COLUMN_TASK_ID, task.get_id());
                 intentTaskDetails.putExtra("TaskID1c", task.getTask1cID());
                 intentTaskDetails.putExtra("CreateDate", task.getCreateDate());
                 intentTaskDetails.putExtra("UpToDate", task.getUpToDate());
